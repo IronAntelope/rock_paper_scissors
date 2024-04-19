@@ -9,23 +9,24 @@
         const choices = ["rock",
         "paper",
         "scissors"];
-        
-        //pre: no computer choice
-        //post: computer choice made in computerSelection
+
+        //when called: computer choice made in computerSelection
         function getComputerChoice(choices) {
             let computerSelection = Math.floor(Math.random() * choices.length);
             return choices[computerSelection];
         }
-        //console.log(getComputerChoice(choices));
+        console.log(getComputerChoice(choices));
 
         //pre: no player choice
         //post: 
-        // needs this choices.toString();
-        function getPlayerSelection(choices) {
-            let playerSelection = prompt("Rock, Paper or Scissor? ") * choices.length;
-            return choices[playerSelection];
-        }
-        console.log(getPlayerSelection(choices));
+        // needs this>> choices.toString();
+        //function showConfirm(){}
+            function getPlayerChoice() {
+                let playerSelection = prompt("Rock, Paper or Scissors? ").toLowerCase();
+                return playerSelection; 
+            }
+        
+        console.log(getPlayerChoice(choices));
 
         //function playRound(playerSelection, computerSelection) {}
 
