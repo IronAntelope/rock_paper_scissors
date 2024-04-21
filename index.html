@@ -15,20 +15,22 @@
             let computerSelection = Math.floor(Math.random() * choices.length);
             return choices[computerSelection];
         }
-        console.log(getComputerChoice(choices));
+        //console.log(getComputerChoice(choices));
 
-        //pre: no player choice
-        //post: 
-        // needs this>> choices.toString();
-        //function showConfirm(){}
-            function getPlayerChoice() {
-                let playerSelection = prompt("Rock, Paper or Scissors? ").toLowerCase();
-                return playerSelection; 
-            }
-        
-        console.log(getPlayerChoice(choices));
+        //when called: get player selection 
+        function getPlayerChoice() {
+            let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
+            if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors")
+                return playerSelection;
+            else
+                console.log("Not a choice");
+                return getPlayerChoice();
+        }        
+        //console.log(getPlayerChoice());
 
-        //function playRound(playerSelection, computerSelection) {}
+        function playRound(playerSelection, computerSelection) {
+            return;
+        }
 
         
     </script>

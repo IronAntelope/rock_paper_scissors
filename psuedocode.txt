@@ -1,0 +1,13 @@
+//rock paper scissors
+
+
+//task: get a randomised choice (rock paper scissors) from the computer
+tell computer choices
+tell computer to pick rock or paper or scissors 
+
+//task: ask player for their choice 
+//alg:
+fn getPlayerChoice
+playerSelection is a string input from player
+player's choice must be rock paper or scissors else re-prompt 
+print player choice
