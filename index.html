@@ -14,29 +14,36 @@
 
         playGame();
 
-        //fn below
+
+
+        //functions are to follow below
+
         //when called: plays game, till a participant has 5 points
         function playGame() {
-            if (i = 0, i < 6, i++) {
+            //initialize scores
+            let computerScore = 0; 
+            let playerScore = 0; 
+
+            //let's play until we have a winner. use conditionals to play until a score of 5 is reached
+            for (let i = 0; i < (computerScore = 5); i++) {
                 playRound(playerSelection, computerSelection);
             }
-        }
 
-        //when called: plays 1 round of rock paper scissor
-        function playRound(playerChoice, computerChoice) {
-            let computerScore = 0; //move to playGame
-            let playerScore = 0; //move
-            if ((playerSelection == "rock" && computerSelection == "Scissors") ||
-                (playerSelection == "paper" && computerSelection == "rock") ||
-                (playerSelection == "scissors" && computerSelection == "paper")) {
-                console.log("You win");
-                playerScore++; //add return
-            } else if (playerSelection == computerSelection) {
-                console.log("Tie!")
-            } else {
-                console.log("You lose!");
-                computerScore++;
-            }
+
+            //when called: plays 1 round of rock paper scissor && increases score accordingly 
+            function playRound(playerChoice, computerChoice) {
+                if ((playerSelection == "rock" && computerSelection == "Scissors") ||
+                    (playerSelection == "paper" && computerSelection == "rock") ||
+                    (playerSelection == "scissors" && computerSelection == "paper")) {
+                    console.log("You win"); //if you win
+                    return playerScore++; 
+                } else if (playerSelection == computerSelection) {
+                    console.log("Tie!") //if you tie
+                } else {
+                    console.log("You lose!"); //if you lose
+                    return computerScore++;
+                }
+            }            
         }
 
         //when called: computer choice made in computerSelection
