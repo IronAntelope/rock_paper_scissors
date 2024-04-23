@@ -10,4 +10,14 @@ tell computer to pick rock or paper or scissors
 fn getPlayerChoice
 playerSelection is a string input from player
 player's choice must be rock paper or scissors else re-prompt 
-print player choice
+return player choice
+
+
+//task: play a round of rock paper scissors
+call computer choice
+call player choice
+compare and decide winner 
+rock beats scissors, scissors beats paper, paper beats rock
+keep score 
+
+//task: play game (loop)

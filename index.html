@@ -9,9 +9,13 @@
 
         //declare variables that will be used
         const choices = ["rock", "paper", "scissors"];
-        const playerSelection = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-
+        //const playerSelection = getPlayerChoice();
+        //const computerSelection = getComputerChoice();
+        
+        //initialize scores
+        let computerScore = 0; 
+        let playerScore = 0; 
+        
         playGame();
 
 
@@ -20,24 +24,27 @@
 
         //when called: plays game, till a participant has 5 points
         function playGame() {
-            //initialize scores
-            let computerScore = 0; 
-            let playerScore = 0; 
-
             //let's play until we have a winner. use conditionals to play until a score of 5 is reached
-            for (let i = 0; i < (computerScore = 5); i++) {
-                playRound(playerSelection, computerSelection);
+            for (let i = 0; i < 5; i++) {
+                playRound(getPlayerChoice(), getComputerChoice());
+            }
+            if (playerScore > computerScore) {
+                console.log("You win the game!");
+            } else if (playerScore == computerScore) {
+                console.log("It's a tie. Game over!");
+            } else {
+                console.log("Game over. You lose :(");
             }
 
 
             //when called: plays 1 round of rock paper scissor && increases score accordingly 
             function playRound(playerChoice, computerChoice) {
-                if ((playerSelection == "rock" && computerSelection == "Scissors") ||
-                    (playerSelection == "paper" && computerSelection == "rock") ||
-                    (playerSelection == "scissors" && computerSelection == "paper")) {
-                    console.log("You win"); //if you win
+                if ((playerChoice == "rock" && computerChoice == "scissors") ||
+                    (playerChoice == "paper" && computerChoice == "rock") ||
+                    (playerChoice == "scissors" && computerChoice == "paper")) {
+                    console.log("You win!"); //if you win
                     return playerScore++; 
-                } else if (playerSelection == computerSelection) {
+                } else if (playerChoice == computerChoice) {
                     console.log("Tie!") //if you tie
                 } else {
                     console.log("You lose!"); //if you lose
