@@ -1,73 +1,105 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Rock Paper Scissors</title>
-    </head>
-    <script>
+  <head>
+    <meta charset="utf-8">
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <div id="elements" class="elements">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </div>
+    <div id="scores">
+      <div id="playerScoreTracker">Player score: 0</div>
+      <div id="computerScoreTracker">Opponent score: 0</div>
+    </div>
+    <div id="results"></div>
+  </body>
+  <script>
+    //meta
+    const choices = ["rock", "paper", "scissors"];
+    let computerScore = 0;
+    let playerScore = 0;
+    //selectors
+    const elements = document.querySelector('#elements');
+    const scoresList = document.querySelector('#scores');
+    const results = document.querySelector('#results');
+    let playerScoreTracker = document.querySelector('#playerScoreTracker');
+    let computerScoreTracker = document.querySelector('#computerScoreTracker');
+    let roundResult = document.createElement('div');
+    const playAgain = document.createElement('button');
+    playAgain.textContent = "Play again?";
 
-        //declare variables that will be used
-        const choices = ["rock", "paper", "scissors"];
-        //const playerSelection = getPlayerChoice();
-        //const computerSelection = getComputerChoice();
+    //event listener
+    elements.addEventListener('click', () => {
+      let target = event.target;
+
+      switch(target.id) {
+        case 'rock': playRound("rock", getComputerChoice());
+          break;
+        case 'paper': playRound("paper", getComputerChoice());
+          break;
+        case 'scissors': playRound("scissors", getComputerChoice());
+          break;
+      };
+
+      playerScoreTracker.textContent = "Player score: " + playerScore;
+      scoresList.appendChild(playerScoreTracker);
+      computerScoreTracker.textContent = "Opponent score: " + computerScore;
+      scoresList.appendChild(computerScoreTracker);
+
+      if(playerScore >= 5 || computerScore >= 5) {
+        if (playerScore > computerScore) {
+          roundResult.textContent = "You win the game! ";
+          results.appendChild(roundResult);
+          results.appendChild(playAgain);
+        } else {
+          roundResult.textContent = "Game over. You lose :(";
+          results.appendChild(roundResult);
+          results.appendChild(playAgain);
+        };
+        document.querySelector('#rock').disabled = true;
+        document.querySelector('#paper').disabled = true;
+        document.querySelector('#scissors').disabled = true;
         
-        //initialize scores
-        let computerScore = 0; 
-        let playerScore = 0; 
-        
-        playGame();
+      };
+      
+      playAgain.addEventListener('click', () => {
+        playerScore = 0;
+        computerScore = 0
+        document.querySelector('#rock').disabled = false;
+        document.querySelector('#paper').disabled = false;
+        document.querySelector('#scissors').disabled = false;
+        playerScoreTracker.textContent = "Player score: " + playerScore;
+        computerScoreTracker.textContent = "Opponent score: " + computerScore;
+        results.removeChild(roundResult);
+        results.removeChild(playAgain);
+      })
+    });
 
+    //functions
+    function playRound(playerChoice, computerChoice) {
+      if ((playerChoice == "rock" && computerChoice == "scissors") ||
+        (playerChoice == "paper" && computerChoice == "rock") ||
+        (playerChoice == "scissors" && computerChoice == "paper")) { 
+        roundResult.textContent = "You win!";
+        results.appendChild(roundResult);
+        return playerScore++; 
+      } else if (playerChoice == computerChoice) {
+        roundResult.textContent = "Tie!";
+        results.appendChild(roundResult);
+      } else {
+        roundResult.textContent = "You lose!";
+        results.appendChild(roundResult);
+        return computerScore++;
+      };
+    };
 
-
-        //functions are to follow below
-
-        //when called: plays game, till a participant has 5 points
-        function playGame() {
-            //let's play until we have a winner. use conditionals to play until a score of 5 is reached
-            for (let i = 0; i < 5; i++) {
-                playRound(getPlayerChoice(), getComputerChoice());
-            }
-            if (playerScore > computerScore) {
-                console.log("You win the game!");
-            } else if (playerScore == computerScore) {
-                console.log("It's a tie. Game over!");
-            } else {
-                console.log("Game over. You lose :(");
-            }
-
-
-            //when called: plays 1 round of rock paper scissor && increases score accordingly 
-            function playRound(playerChoice, computerChoice) {
-                if ((playerChoice == "rock" && computerChoice == "scissors") ||
-                    (playerChoice == "paper" && computerChoice == "rock") ||
-                    (playerChoice == "scissors" && computerChoice == "paper")) {
-                    console.log("You win!"); //if you win
-                    return playerScore++; 
-                } else if (playerChoice == computerChoice) {
-                    console.log("Tie!") //if you tie
-                } else {
-                    console.log("You lose!"); //if you lose
-                    return computerScore++;
-                }
-            }            
-        }
-
-        //when called: computer choice made in computerSelection
-        function getComputerChoice() {
-            let selection = Math.floor(Math.random() * choices.length);
-            return choices[selection];
-        }
-
-        //when called: get player selection 
-        function getPlayerChoice() {
-            let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
-            if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors")
-                return playerSelection;
-            else
-                console.log("Not a choice");
-                return getPlayerChoice();
-        }        
-
-    </script>
+    function getComputerChoice() {
+        let selection = Math.floor(Math.random() * choices.length);
+        return choices[selection];
+    };
+  </script>
 </html>
